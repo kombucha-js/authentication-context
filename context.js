@@ -2,9 +2,9 @@
 const { _sql }             = require( 'database-postgresql-context' );
 const { schema }           = require( 'vanilla-schema-validator' );
 const { preventUndefined } = require( 'prevent-undefined' );
-const { AsyncContext }     = require( 'async-context/context' );
+const { AsyncContext }     = require( 'asynchronous-context/context' );
 const { encodeToken, decodeToken, TokenError } = require( 'crypto-web-token/tokenizer.js' );
-const { asyncReadSettings } = require( 'async-context/settings' ) ;
+const { asyncReadSettings } = require( 'asynchronous-context/settings' ) ;
 const {
   LOGIN_USER_ID_SUPERUSER,
   LOGIN_USER_ID_ANONYMOUS,
@@ -20,14 +20,14 @@ async function getAuthenticationSettingsAsync() {
   const json = (await asyncReadSettings( schema.t_authentication_settings() )).authentication_context;
 
   // Ensure the administrator setting.
-  if ((        json.administrator  instanceof  Object ) && 
+  if ((        json.administrator  instanceof  Object ) &&
       ( typeof json.administrator.username === 'string' ) &&
       ( typeof json.administrator.password === 'string' ))
   {
     json.administrator.activated = true;
   } else {
     // overrite it.
-    json.administrator = { 
+    json.administrator = {
       activated : false,
       username : null,
       password : null,
@@ -84,7 +84,7 @@ async function login ( __nargs ) {
 
   //
   // 1. Check if it is an attempt of anonymous login.
-  // 
+  //
   if ( input.is_anonymous === true ) {
     login_level    = LOGIN_LEVEL_ANONYMOUS; // an anonymous user
     login_user_id  = LOGIN_USER_ID_ANONYMOUS;
@@ -93,7 +93,7 @@ async function login ( __nargs ) {
     // this.logger.log( 'input.authentication_token', input.authentication_token );
 
     // TODO Clean this up (Wed, 07 Sep 2022 20:28:02 +0900)
-    // /* `async-context-backend/middleware.js` guarantees that `authentication_token` field always exists.
+    // /* `asynchronous-context-backend/middleware.js` guarantees that `authentication_token` field always exists.
     //  * Therefore, this will not be executed. (Wed, 07 Sep 2022 16:56:20 +0900)
     //  * Whenever no authentication token is specified in the current HTTP header,
     //  * input.authentication_token is always null.
@@ -183,7 +183,7 @@ async function login ( __nargs ) {
   }
 
   // MODIFIED (Wed, 19 Oct 2022 14:20:39 +0900)
-  const current_user_id       = login_user_id; 
+  const current_user_id       = login_user_id;
   const current_user_id_stack = [ login_user_id ];
   const user_identity_token = {
     login_level,
@@ -330,7 +330,7 @@ AuthenticationContext.defineMethod( switch_current_user_by_history, 'POST', {
 
 
 
-// 
+//
 // /**
 //  *
 //  * login_status({ token : 'TOKEN-VALUE' }) : ResultObject {
@@ -352,7 +352,7 @@ AuthenticationContext.defineMethod( switch_current_user_by_history, 'POST', {
 //       }
 //     }
 //   })(input.token);
-// 
+//
 //   if ( new Date().getTime() < decodedToken.login_valid_until.getTime() ) {
 //     // this.logger.log({pattern:3,input,decodedToken });
 //     return decodedToken;
@@ -362,7 +362,7 @@ AuthenticationContext.defineMethod( switch_current_user_by_history, 'POST', {
 //   }
 // }
 // AuthenticationContext.defineMethod( login_status, 'POST' );
- 
+
 
 async function set_user_identity( __user_identity ) {
   if ( __user_identity == null ) {
@@ -381,7 +381,7 @@ async function get_user_identity() {
   if ( this.__user_identity == null ) {
     result = {
       login_level           : LOGIN_LEVEL_NONE,
-      login_user_id         : null, 
+      login_user_id         : null,
       login_valid_until     : null,
       current_user_id_stack : [],
       current_user_id       : null,

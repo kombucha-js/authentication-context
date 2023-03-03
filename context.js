@@ -248,17 +248,6 @@ AuthenticationContext.defineMethod( get_login_information, 'POST', {
 });
 
 
-
-// async function who_am_i(nargs) {
-//   try {
-//     this.connect();
-//     return this.read_user({user:nargs});
-//   } finally {
-//     this.disconnect();
-//   }
-// }
-// AuthenticationContext.defineMethod( who_am_i, 'POST' );
-
 async function abstract_switch_current_user({from_user_id,to_user_id}) {
   throw new AuthrozationError( 'not implemented' );
 }

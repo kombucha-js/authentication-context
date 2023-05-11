@@ -1,5 +1,4 @@
 
-const { _sql }             = require( 'database-postgresql-context' );
 const { schema }           = require( 'vanilla-schema-validator' );
 const { preventUndefined } = require( 'prevent-undefined' );
 const { AsyncContext }     = require( 'asynchronous-context/context' );

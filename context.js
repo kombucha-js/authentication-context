@@ -242,7 +242,7 @@ async function get_login_information() {
   return login_information;
 }
 AuthenticationContext.defineMethod( get_login_information, 'POST', {
-  typesafe_input : schema.statement`array(any())`,
+  typesafe_input : schema.statement`array_of(any())`,
   typesafe_output : schema.statement`t_user_login_info()`,
 });
 

@@ -8,9 +8,12 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "dotenv": "^16.0.3"
+  "bak-devDependencies": {
+    "dotenv": "^16.0.3",
+    "end": null
   },
   "dependencies": {
+  },
+  "devDependencies": {
   }
 }

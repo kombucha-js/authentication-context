@@ -1,9 +1,9 @@
 
-const { schema }           = require( 'vanilla-schema-validator' );
-const { preventUndefined } = require( 'prevent-undefined' );
-const { AsyncContext }     = require( 'asynchronous-context/context' );
+const { schema }                               = require( 'vanilla-schema-validator' );
+const { preventUndefined }                     = require( 'prevent-undefined' );
+const { AsyncContext }                         = require( 'asynchronous-context/context' );
 const { encodeToken, decodeToken, TokenError } = require( 'crypto-web-token/tokenizer.js' );
-const { asyncReadSettings } = require( 'asynchronous-context/settings' ) ;
+const { asyncReadSettings }                    = require( 'asynchronous-context/settings' ) ;
 const {
   LOGIN_USER_ID_SUPERUSER,
   LOGIN_USER_ID_ANONYMOUS,
@@ -16,7 +16,7 @@ require( './schema' ).init( schema );
 // console.log( 'authentication-context : schema ' , schema );
 
 async function getAuthenticationSettingsAsync() {
-  const json = (await asyncReadSettings( schema.t_authentication_settings() )).authentication_context;
+  const json = ( preventUndefined( await asyncReadSettings(), schema.t_authentication_settings() ) ).authentication_context;
 
   // Ensure the administrator setting.
   if ((        json.administrator  instanceof  Object ) &&

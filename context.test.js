@@ -1,4 +1,6 @@
-require('dotenv').config()
+//require('dotenv').config()
+// MODIFIED (Wed, 27 Sep 2023 13:28:23 +0900)
+require('asynchronous-context/env').config();
 const { AuthenticationContext } = require('authentication-context' );
 const { getAuthenticationSettingsAsync } = require('./authentication-context' );
 

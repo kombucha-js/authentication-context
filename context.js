@@ -92,7 +92,7 @@ async function login ( __nargs ) {
     // this.logger.log( 'input.authentication_token', input.authentication_token );
 
     // TODO Clean this up (Wed, 07 Sep 2022 20:28:02 +0900)
-    // /* `asynchronous-context-backend/middleware.js` guarantees that `authentication_token` field always exists.
+    // /* `asynchronous-context-rpc/middleware.js` guarantees that `authentication_token` field always exists.
     //  * Therefore, this will not be executed. (Wed, 07 Sep 2022 16:56:20 +0900)
     //  * Whenever no authentication token is specified in the current HTTP header,
     //  * input.authentication_token is always null.

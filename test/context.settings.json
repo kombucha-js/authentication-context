@@ -1,0 +1,15 @@
+{
+  "env": {
+    "TOKENIZER_PASSWORD" : "helloworldfoobar"
+  },
+  "crypto_web_token" : {
+    "tokenizer_password" : "foobar"
+  },
+  "authentication_context" : {
+    "administrator" : {
+      "username" : "test_username",
+      "password" : "test_password"
+    }
+  }
+}
+

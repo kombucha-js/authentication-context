@@ -1,19 +1,18 @@
 
-const { schema }                               = require( 'vanilla-schema-validator' );
-const { preventUndefined }                     = require( 'prevent-undefined' );
-const { AsyncContext }                         = require( 'asynchronous-context/context' );
-const { encodeToken, decodeToken, TokenError } = require( 'crypto-web-token/tokenizer.js' );
-const { asyncReadSettings }                    = require( 'asynchronous-context/settings' ) ;
-const {
+import { schema }                               from  'vanilla-schema-validator' ;
+import { preventUndefined }                     from  'prevent-undefined' ;
+import { AsyncContext }                         from  'asynchronous-context/context' ;
+import { encodeToken, decodeToken, TokenError } from  'crypto-web-token/tokenizer' ;
+import { asyncReadSettings }                    from  'asynchronous-context/settings'  ;
+import {
   LOGIN_USER_ID_SUPERUSER,
   LOGIN_USER_ID_ANONYMOUS,
   LOGIN_LEVEL_NONE,
   LOGIN_LEVEL_ANONYMOUS,
   LOGIN_LEVEL_USER,
-  LOGIN_LEVEL_SUPERUSER } = require( './header.js' );
+  LOGIN_LEVEL_SUPERUSER } from  './header.mjs' ;
 
-require( './schema' ).init( schema );
-// console.log( 'authentication-context : schema ' , schema );
+(await import( "./schema.mjs")).init( schema );
 
 async function getAuthenticationSettingsAsync() {
   const json = ( preventUndefined( await asyncReadSettings(), schema.t_authentication_settings() ) ).authentication_context;
@@ -35,21 +34,21 @@ async function getAuthenticationSettingsAsync() {
 
   return json;
 }
-module.exports.getAuthenticationSettingsAsync = getAuthenticationSettingsAsync;
+export { getAuthenticationSettingsAsync };
 
 class AuthenticationContext extends AsyncContext {
   constructor(...args) {
     super(...args);
   }
 }
-module.exports.AuthenticationContext = AuthenticationContext;
+export { AuthenticationContext };
 
 class AuthrozationError extends Error {
   constructor(...args) {
     super( ...args );
   }
 }
-module.exports.AuthrozationError = AuthrozationError;
+export { AuthrozationError };
 
 
 function calculate_valid_until(minutesToAdd = 30) {

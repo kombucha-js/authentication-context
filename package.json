@@ -2,7 +2,17 @@
   "name": "authentication-context",
   "version": "1.0.0",
   "description": "",
-  "main": "context.js",
+  "type": "module",
+  "exports": {
+    "." :             "./context.mjs",
+    "./context.mjs":  "./context.mjs",
+    "./header.mjs":   "./header.mjs",
+    "./schema.mjs":   "./schema.mjs",
+
+    "./context":      "./context.mjs",
+    "./header":       "./header.mjs",
+    "./schema":       "./schema.mjs"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -198,8 +198,8 @@ async function login ( __nargs ) {
   return {token};
 }
 AuthenticationContext.defineMethod( login, 'POST',{
-  typesafe_input  : schema.statement`array( object( is_anonymous: boolean() ) )`,
-  typesafe_output : schema.statement`object( token:string() )`,
+  typesafe_input  : schema.compile`array( object( is_anonymous: boolean() ) )`,
+  typesafe_output : schema.compile`object( token:string() )`,
 });
 
 /*
@@ -227,8 +227,8 @@ async function abstract_login_information(nargs) {
   throw new AuthrozationError('not implemented');
 }
 AuthenticationContext.defineMethod( abstract_login_information, {
-  typesafe_input : schema.statement`array( t_user_identity_token() )`,
-  typesafe_output : schema.statement`t_user_login_info()`,
+  typesafe_input : schema.compile`array( t_user_identity_token() )`,
+  typesafe_output : schema.compile`t_user_login_info()`,
 });
 
 
@@ -241,8 +241,8 @@ async function get_login_information() {
   return login_information;
 }
 AuthenticationContext.defineMethod( get_login_information, 'POST', {
-  typesafe_input : schema.statement`array_of(any())`,
-  typesafe_output : schema.statement`t_user_login_info()`,
+  typesafe_input : schema.compile`array_of(any())`,
+  typesafe_output : schema.compile`t_user_login_info()`,
 });
 
 
@@ -282,8 +282,8 @@ async function switch_current_user({user_id}) {
 }
 
 AuthenticationContext.defineMethod( switch_current_user, 'POST', {
-  typesafe_input  : schema.statement`array( object( user_id : t_user_id() ) )`,
-  typesafe_output : schema.statement`t_switch_user_result()`,
+  typesafe_input  : schema.compile`array( object( user_id : t_user_id() ) )`,
+  typesafe_output : schema.compile`t_switch_user_result()`,
 });
 
 
@@ -311,8 +311,8 @@ async function switch_current_user_by_history({history_index}) {
 }
 
 AuthenticationContext.defineMethod( switch_current_user_by_history, 'POST', {
-  typesafe_input  : schema.statement`array( object( history_index : number() ) )`,
-  typesafe_output : schema.statement`t_switch_user_result()`,
+  typesafe_input  : schema.compile`array( object( history_index : number() ) )`,
+  typesafe_output : schema.compile`t_switch_user_result()`,
 });
 
 
@@ -381,8 +381,8 @@ async function get_user_identity() {
 }
 
 AuthenticationContext.defineMethod( get_user_identity, {
-  // typesafe_input  : schema.statement`array( )`, // This throws an error. This should be fixed in vanilla-schema-validator.js
-  typesafe_output : schema.statement`t_user_identity_token()`,
+  // typesafe_input  : schema.compile`array( )`, // This throws an error. This should be fixed in vanilla-schema-validator.js
+  typesafe_output : schema.compile`t_user_identity_token()`,
 });
 
 

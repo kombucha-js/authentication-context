@@ -17,8 +17,8 @@ function init( schema ) {
       null(),
       equals(<< 'superuser' >>),
       equals(<< 'anonymous' >>),
+      equals(<< 'yourself'  >>),
       uuid(),
-      any(),
     )`
 
   schema.t_username = schema.compile`

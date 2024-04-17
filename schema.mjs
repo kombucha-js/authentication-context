@@ -12,6 +12,7 @@ function init( schema ) {
   });
 
   schema.t_args = schema.compile`array()`;
+
   schema.t_user_id = schema.compile`
     or(
       null(),
@@ -24,12 +25,11 @@ function init( schema ) {
   schema.t_username = schema.compile`
     or(
       null(),
-      equals(<< 'superuser' >>),
-      equals(<< 'anonymous' >>),
       uuid(),
       any(),
     )
   `;
+
   schema.t_user_identity_token = schema.compile`
     object(
       login_level           : number(),

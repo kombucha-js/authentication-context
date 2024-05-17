@@ -25,7 +25,7 @@ function init( schema ) {
   schema.t_username = schema.compile`
     or(
       null(),
-      uuid(),
+      string(),
       any(),
     )
   `;

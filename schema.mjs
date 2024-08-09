@@ -35,8 +35,8 @@ function init( schema ) {
       login_level           : number(),
       login_user_id         : t_user_id(),
       login_valid_until     : any(),
-      current_user_id_stack : array_of( t_user_id() ),
       current_user_id       : t_user_id(),
+      current_user_id_stack : array_of( t_user_id() ),
     )
   `;
 
